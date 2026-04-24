@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+>
+    <f:GridList items="{jsonRejectedModel>/}">
+        <f:GridListItem
+            press="onPressLineItemHistoryRejected"
+            type="Active"
+        >
+            <Panel class="modernCard">
+                <VBox class="sapUiSmallMargin">
+                    <layoutData>
+                        <FlexItemData
+                            growFactor="1"
+                            shrinkFactor="0"
+                        /> 
+                    </layoutData>
+                    <HBox justifyContent="End">
+                        <core:Icon
+                            src="sap-icon://navigation-right-arrow"
+                            size="1rem"
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            text="Date : { path : 'jsonRejectedModel>Erdat' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}} - Time : {path: 'jsonRejectedModel>Uzeit' , type: 'sap.ui.model.odata.type.Time', formatOptions: {pattern: 'HH:mm:ss'}} "
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop"> 
+                    <Label
+                            class="poAmountSmall"
+                            text="{
+                                parts: [
+                                        { path:'jsonRejectedModel>Netwr' },
+                                        { path : 'jsonRejectedModel>Waers'}
+                                       ],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: { showMeasure: true, currencyCode: true }}"
+                        /> 
+                        <!-- <Label
+                            design="Bold"
+                            text="{jsonRejectedModel>Netwr} {jsonRejectedModel>Waers}"
+                        /> -->
+                        <!-- <Link
+                            class="sapUiTinyMarginBegin" 
+                            text="Depot Comment"
+                            press="onHandleLinkPressDepotCommentRejected"
+                        /> -->
+                    </HBox>
+                     <HBox class="sapUiTinyMarginTop">
+                        <Label
+                            wrapping="true"
+                            wrappingType="Normal"
+                            class="poSubtitleSmall"
+                            text="{jsonRejectedModel>Ebeln} / {jsonRejectedModel>Lifnr} / {jsonRejectedModel>Name1} "
+                        />
+                    </HBox>
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            wrapping="true"
+                            wrappingType="Normal"
+                            text="{jsonRejectedModel>Matnr} / {jsonRejectedModel>Arktx}"
+                        />
+                    </HBox>
+                    <HBox class="sapUiTinyMarginTop">
+                        <Link
+                            text="Initiator Comment"
+                            press="onHandleLinkPressInitiatorRejected"
+                        />
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                         <Text
+                            text="Reason Code : {jsonRejectedModel>}"
+                        />
+                       
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            text="Depot Comment : {jsonRejectedModel>AddInfo}"
+                        />
+                    </HBox> -->
+                    <HBox
+                        justifyContent="Start"
+                        class="sapUiResponsiveContentPadding sapUiTinyMarginTop"
+                    >
+                        <Button
+                            text="History"
+                            type="Ghost"
+                            press="onPressLogRej"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Button
+                            text="Print"
+                            icon="https://img.icons8.com/color/48/print.png"
+                            type="Ghost"
+                            press="onPressPrintPlaceholder"
+                        />
+                        <Link 
+                            text="View Details" 
+                            press="onPressLineItemHistoryRejected"
+                            class="sapUiTinyMarginTop sapUiSmallMarginBegin"
+                        />
+                    </HBox>
+                </VBox>
+            </Panel>
+        </f:GridListItem>
+    </f:GridList>
+</core:FragmentDefinition>

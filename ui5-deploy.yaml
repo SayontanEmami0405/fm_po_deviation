@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: fmpodeviation
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/** 
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration: 
+        target:
+          destination: NWD
+          url: http://gwdev:8000
+        app:
+          name: ZFMPODEVAPP
+          package: ZEMAMI
+          transport:   NGDK905939
+        exclude:
+          - /test/

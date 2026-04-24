@@ -1,0 +1,149 @@
+{
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "fmpodeviation", 
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": { 
+      "version": "0.0.2"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.5",
+      "toolsId": "cc452883-8a04-44c9-9397-fcf92c51b035"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZFMPODEVIATION_SRV/",  
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.71.67",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "fmpodeviation.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "jsonMyApprovalsModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonApprovedModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonRejectedModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonDetailsModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonItemListModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "fmpodeviation.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteApp",
+          "pattern": ":?query:",
+          "target": [
+            "TargetApp"
+          ]
+        },
+        {
+          "name": "RouteDetails",
+          "pattern": "Details/{PO}/:Mode:",
+          "target": [
+            "TargetPOItem"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetApp": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Home",
+          "viewName": "Home"
+        },
+         "TargetPOItem": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Details",
+          "viewName": "Details"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "fmpodeviation.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}

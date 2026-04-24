@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout">
+    <Popover
+        title="My Account"
+        placement="Bottom"
+        contentWidth="240px">
+        <content>
+            <VBox class="sapUiSmallMargin" alignItems="Center">
+                <Image 
+                    src="https://img.icons8.com/color/96/user-male-circle--v1.png" 
+                    height="64px" 
+                    class="sapUiSmallMarginBottom"
+                />
+                <Title text="{jsonUserModel>/Username}" level="H3" />
+                <Text text="ID: {jsonUserModel>/Id}" />
+            </VBox>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #004b91;
+    --primary-light: #e3f2fd;
+    --secondary-color: #f5f7fa;
+    --accent-color: #2196f3;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --text-primary: #1a202c;
+    --text-secondary: #718096;
+    --white: #ffffff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* Global Styles */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.sapUiBody {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+}
+
+.sapMPageContent {
+    background-color: transparent !important;
+}
+
+/* Header / Toolbar */
+.bgTitle {
+    background: linear-gradient(135deg, #004b91 0%, #0072bc 100%) !important;
+    min-height: 4rem !important;
+    border-bottom: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+    padding: 0 1rem !important;
+}
+
+.whiteText {
+    color: var(--white) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+}
+
+/* Logo Styling - Classic Rounded Rectangle */
+.appLogo {
+    height: 2.5rem !important;
+    width: 4.5rem !important;
+    border-radius: 8px !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    object-fit: contain !important;
+    transform: scale(1.1);
+}
+
+/* IconTabBar Customization */
+.sapMITB {
+    background-color: transparent !important;
+    margin-top: 1rem !important;
+}
+
+.sapMITH {
+    background-color: rgba(255,255,255,0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #e2e8f0 !important;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* Custom Card Style for List Items */
+.modernCard {
+    background-color: #ffffff !important;
+    margin: 1rem !important;
+    border-radius: 16px !important;
+    box-shadow: var(--card-shadow) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    transition: var(--transition) !important;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    cursor: pointer !important;
+}
+
+.modernCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Smaller Font versions for Cards */
+.poAmountSmall {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.2px;
+}
+
+.poSubtitleSmall {
+    font-size: 0.78rem !important;
+    color: #4a5568 !important;
+    font-weight: 600 !important;
+}
+
+.poTitleSmall {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    color: var(--primary-color) !important;
+}
+
+/* Status Indicators */
+.sapMObjectStatus {
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+}
+
+/* Buttons */
+.sapMBtn {
+    border-radius: 10px !important;
+}
+
+.sapMBtnInner {
+    border-radius: 10px !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .bgTitle { height: 4rem !important; padding: 0 0.5rem !important; }
+    .whiteText { 
+        font-size: 0.88rem !important; 
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        max-width: 150px !important;
+        overflow: hidden !important;
+    }
+    .modernCard { margin: 0.75rem !important; border-radius: 12px !important; }
+    .poAmountSmall { font-size: 1rem !important; }
+    .poSubtitleSmall { font-size: 0.68rem !important; }
+    .sapMObjectStatusText { font-size: 0.65rem !important; white-space: nowrap !important; }
+    .sapMObjectStatus { padding: 2px 4.5px !important; height: auto !important; }
+
+    /* Hide greeting on mobile to fix the header crash */
+    .sapUiSmallMarginEnd.whiteText {
+        display: none !important;
+    }
+}
+
+/* UI Polishing */
+*:focus { outline: none !important; }
+.sapMITBFilterIcon { background-color: transparent !important; border: none !important; }
+/* High Visibility Tab Selection */
+.sapMITBSelected {
+    border-bottom: 5px solid #004b91 !important;
+    background-color: rgba(0, 75, 145, 0.05) !important;
+}
+
+.sapMITBSelected .sapMITBText {
+    color: #004b91 !important;
+    font-weight: 800 !important;
+}
+
+.sapMITBSelected .sapMITBFilterIcon {
+    transform: scale(1.1);
+    color: #004b91 !important;
+}
+
+/* For the inner/smaller tabs */
+.sapMITHSelected {
+    border-bottom: 5px solid #004b91 !important;
+    background-color: rgba(0, 75, 145, 0.05) !important;
+}
+
+.releaseStatusText {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+    margin-top: 0.25rem !important;
+    white-space: nowrap !important;
+}

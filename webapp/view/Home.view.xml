@@ -1,0 +1,240 @@
+<mvc:View
+    controllerName="fmpodeviation.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+> 
+    <Page 
+        id="page"
+        showHeader="true"
+        class="sapUiResponsiveContentPadding"
+    >
+        <customHeader> 
+            <Toolbar class="bgTitle">
+                <Button
+                    icon="https://img.icons8.com/color/48/back--v1.png"
+                    type="Transparent"
+                    press="onNavBack"
+                    class="sapUiTinyMarginBegin whiteText"
+                />
+                <Image
+                    src="https://play-lh.googleusercontent.com/vUhttkqY8FHqm6I-r0T210GBeH-9co97zc0D5dtUBqMWPhbdZdw9Kh3FDFOKFpQKLoPPgpviRZzWRBtD-Txgnw=w600-h300-pc0xffffff-pd"
+                    class="appLogo sapUiSmallMarginBegin"
+                />
+                <ToolbarSpacer />
+                <Text
+                    text="Digital PO Approval" 
+                    class="whiteText"
+                />
+                <ToolbarSpacer />
+                <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                    <Text text="Hello, {jsonUserModel>/Username}" class="whiteText sapUiSmallMarginEnd" />
+                    <Button 
+                        id="profileBtn"
+                        icon="https://img.icons8.com/color/48/user-male-circle--v1.png"
+                        type="Transparent"
+                        press="onProfilePress"
+                        class="whiteText"
+                    />
+                </HBox>
+            </Toolbar> 
+        </customHeader>
+
+        <content>
+            <IconTabBar
+                id="idTabOuter"
+                select="onPressHeaderIconTabBar"
+                backgroundDesign="Solid"
+                headerMode="Standard"
+                expanded="{device>/isNoPhone}"
+            >
+                <items>
+                    <IconTabFilter
+                        key="MyApprovals"
+                        icon="https://img.icons8.com/color/96/todo-list.png"
+                        text="Pending Approvals"
+                        design="Vertical"
+                    >
+                        <VBox class="sapUiSmallMargin">
+                            <SearchField 
+                                id="searchField" 
+                                placeholder="Find PO or Vendor..." 
+                                liveChange="onSearch" 
+                            />
+                        </VBox>
+                        <List
+                            id="approvalsList"
+                            items="{jsonMyApprovalsModel>/}"
+                            noDataText="No pending approvals"
+                            showSeparators="None"
+                        >
+                            <CustomListItem 
+                                type="Active"
+                                press="onPressLineItemMyApprovals"
+                                class="modernCard"
+                            >
+                                <VBox class="sapUiSmallMargin">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                        <VBox width="80%">
+                                            <Text text="{parts: [{path: 'jsonMyApprovalsModel>Erdat'}, {path: 'jsonMyApprovalsModel>Uzeit'}], formatter: '.formatter.formatCardDateTime'}" class="poSubtitle" />
+                                            <Text text="{parts: [{path: 'jsonMyApprovalsModel>Waers'}, {path: 'jsonMyApprovalsModel>Netwr'}], formatter: '.formatter.formatIndianCurrency'}" class="poAmount" />
+                                            <Text text="{jsonMyApprovalsModel>Ebeln} / {jsonMyApprovalsModel>Lifnr} / {jsonMyApprovalsModel>Name1}" class="poTitle" />
+                                        </VBox>
+                                        <VBox alignItems="End">
+                                            <ObjectStatus
+                                                text="Pending"
+                                                state="Warning"
+                                                inverted="true"
+                                            />
+                                            <ObjectStatus 
+                                                text="{path: 'jsonMyApprovalsModel>ZpoInd', formatter: '.formatter.formatReleaseStatus'}" 
+                                                state="{path: 'jsonMyApprovalsModel>ZpoInd', formatter: '.formatter.formatReleaseStatusState'}"
+                                                class="releaseStatusText"
+                                            />
+                                        </VBox>
+                                    </HBox>
+
+                                    <HBox justifyContent="End" wrap="NoWrap" class="sapUiTinyMarginTop">
+                                        <Button 
+                                            text="Approve" 
+                                            icon="https://img.icons8.com/color/48/ok--v1.png" 
+                                            type="Accept"
+                                            press="onPressAccept" 
+                                            visible="{= ${jsonMyApprovalsModel>ZpoInd} !== 'R' }"
+                                        />
+                                        <Button 
+                                            text="Reject"
+                                            icon="https://img.icons8.com/color/48/cancel--v1.png" 
+                                            type="Reject"
+                                            press="onPressReject" 
+                                            class="sapUiTinyMarginBegin"
+                                            visible="{= ${jsonMyApprovalsModel>ZpoInd} !== 'R' }"
+                                        />
+                                        <Button 
+                                            text="Unrelease"
+                                            icon="https://img.icons8.com/color/48/undo.png" 
+                                            type="Emphasized"
+                                            press="onPressUnrelease" 
+                                            visible="{= ${jsonMyApprovalsModel>ZpoInd} === 'R' }"
+                                        />
+                                        <Button 
+                                            text="History" 
+                                            icon="https://img.icons8.com/color/48/order-history.png" 
+                                            type="Ghost"
+                                            press="onPressLog" 
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Button
+                                            icon="https://img.icons8.com/color/48/print.png"
+                                            type="Ghost"
+                                            press="onPressPrintPlaceholder"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                    </HBox>
+                                </VBox>
+                            </CustomListItem>
+                        </List>
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        key="History"
+                        icon="https://img.icons8.com/color/96/time-machine--v1.png"
+                        text="Approval History"
+                        design="Vertical"
+                    >
+
+
+                        <IconTabBar
+                            id="idTabInner"
+                            select="onPressItemIconTabBar"
+                            backgroundDesign="Solid"
+                            applyContentPadding="false"
+                        >
+                        
+                            <items>
+                                <IconTabFilter
+                                    key="Approved"
+                                    text="Approved"
+                                    icon="https://img.icons8.com/color/96/ok--v1.png"
+                                >
+                                    <SearchField 
+                                        width="auto" 
+                                        placeholder="Search history..." 
+                                        liveChange="onSearchHistoryApproved" 
+                                        class="sapUiSmallMargin"
+                                    />
+                                    <List
+                                        id="approvedList"
+                                        items="{jsonApprovedModel>/}"
+                                        showSeparators="None"
+                                    >
+                                        <CustomListItem 
+                                            type="Active"
+                                            press="onPressLineItemHistoryApproved"
+                                            class="modernCard"
+                                        >
+                                            <VBox class="sapUiSmallMargin">
+                                                <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                                    <VBox width="75%">
+                                                        <Text text="{parts: [{path: 'jsonApprovedModel>Erdat'}, {path: 'jsonApprovedModel>Uzeit'}], formatter: '.formatter.formatCardDateTime'}" class="poSubtitle" />
+                                                        <Text text="{parts: [{path: 'jsonApprovedModel>Waers'}, {path: 'jsonApprovedModel>Netwr'}], formatter: '.formatter.formatIndianCurrency'}" class="poAmount" />
+                                                        <Text text="{jsonApprovedModel>Ebeln} / {jsonApprovedModel>Lifnr} / {jsonApprovedModel>Name1}" class="poTitle" />
+                                                    </VBox>
+                                                    <ObjectStatus text="Approved" state="Success" inverted="true" />
+                                                </HBox>
+                                                <HBox class="sapUiSmallMarginTop" justifyContent="Start">
+                                                    <Button text="History" icon="https://img.icons8.com/color/48/order-history.png" type="Ghost" press="onPressLogApr" class="sapUiTinyMarginEnd" />
+                                                    <Button text="Print" icon="https://img.icons8.com/color/48/print.png" type="Ghost" press="onPressPrintPlaceholder" />
+                                                </HBox>
+                                            </VBox>
+                                        </CustomListItem>
+                                    </List>
+                                </IconTabFilter>
+                                <IconTabFilter
+                                    key="Rejected"
+                                    text="Rejected"
+                                    icon="https://img.icons8.com/color/96/cancel--v1.png"
+                                >
+                                    <SearchField 
+                                        width="auto" 
+                                        placeholder="Search history..." 
+                                        liveChange="onSearchHistoryRejected" 
+                                        class="sapUiSmallMargin"
+                                    />
+                                    <List
+                                        id="rejectedList"
+                                        items="{jsonRejectedModel>/}"
+                                        showSeparators="None"
+                                    >
+                                        <CustomListItem 
+                                            type="Active"
+                                            press="onPressLineItemHistoryRejected"
+                                            class="modernCard"
+                                        >
+                                            <VBox class="sapUiSmallMargin">
+                                                <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                                    <VBox width="75%">
+                                                        <Text text="{parts: [{path: 'jsonRejectedModel>Erdat'}, {path: 'jsonRejectedModel>Uzeit'}], formatter: '.formatter.formatCardDateTime'}" class="poSubtitle" />
+                                                        <Text text="{parts: [{path: 'jsonRejectedModel>Waers'}, {path: 'jsonRejectedModel>Netwr'}], formatter: '.formatter.formatIndianCurrency'}" class="poAmount" />
+                                                        <Text text="{jsonRejectedModel>Ebeln} / {jsonRejectedModel>Lifnr} / {jsonRejectedModel>Name1}" class="poTitle" />
+                                                    </VBox>
+                                                    <ObjectStatus text="Rejected" state="Error" inverted="true" />
+                                                </HBox>
+                                                <HBox class="sapUiSmallMarginTop" justifyContent="Start">
+                                                    <Button text="History" icon="https://img.icons8.com/color/48/order-history.png" type="Ghost" press="onPressLogRej" class="sapUiTinyMarginEnd" />
+                                                    <Button text="Print" icon="https://img.icons8.com/color/48/print.png" type="Ghost" press="onPressPrintPlaceholder" />
+                                                </HBox>
+                                            </VBox>
+                                        </CustomListItem>
+                                    </List>
+                                </IconTabFilter>
+                            </items>
+                        </IconTabBar>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+>
+    <f:GridList items="{jsonApprovedModel>/}">
+        <f:GridListItem
+            press="onPressLineItemHistoryApproved"
+            type="Active"
+        >
+            <Panel class="modernCard">
+                <VBox class="sapUiSmallMargin">
+                    <layoutData>
+                        <FlexItemData
+                            growFactor="1"
+                            shrinkFactor="0"
+                        />
+                    </layoutData>
+                    <HBox justifyContent="End">
+                        <core:Icon
+                            src="sap-icon://navigation-right-arrow"
+                            size="1rem"
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            text="Date : { path : 'jsonApprovedModel>Erdat' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}} - Time : {path: 'jsonApprovedModel>Uzeit' , type: 'sap.ui.model.odata.type.Time', formatOptions: {pattern: 'HH:mm:ss'}} "
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop">
+                    <Label
+                            class="poAmountSmall"
+                            text="{
+                                parts: [
+                                        { path:'jsonApprovedModel>Netwr' },
+                                        { path : 'jsonApprovedModel>Waers'}
+                                       ],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: { showMeasure: true, currencyCode: true }}"
+                        /> 
+                        <!-- <Label
+                            design="Bold"
+                            text="{jsonApprovedModel>Netwr} {jsonApprovedModel>Waers}"
+                        /> -->
+                        <!-- <Link
+                            class="sapUiTinyMarginBegin"
+                            text="Depot Comment"
+                            press="onHandleLinkPressDepotCommentApproved"
+                        /> -->
+                    </HBox>
+                    <HBox class="sapUiTinyMarginTop">
+                        <Label
+                            wrapping="true"
+                            wrappingType="Normal"
+                            class="poSubtitleSmall"
+                            text="{jsonApprovedModel>Ebeln} / {jsonApprovedModel>Lifnr} / {jsonApprovedModel>Name1} "
+                        />
+                    </HBox>
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            wrapping="true"
+                            wrappingType="Normal"
+                            text="{jsonApprovedModel>Matnr} / {jsonApprovedModel>Arktx}"
+                        />
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Link
+                            text="Initiator Comment"
+                            press="onHandleLinkPressInitiatorApproved"
+                        />
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                         <Text
+                            text="Reason Code : {jsonApprovedModel>}"
+                        />
+                       
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                           <Text
+                            text="Depot Comment : {jsonApprovedModel>AddInfo}"
+                        />
+                    </HBox> -->
+
+                    <HBox
+                        justifyContent="Start"
+                        class="sapUiResponsiveContentPadding sapUiTinyMarginTop"
+                    >
+                        <Button
+                            text="History"
+                            type="Ghost"
+                            press="onPressLogApr"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Button
+                            text="Print"
+                            icon="https://img.icons8.com/color/48/print.png"
+                            type="Ghost"
+                            press="onPressPrintPlaceholder"
+                        />
+                        <Link 
+                            text="View Details" 
+                            press="onPressLineItemHistoryApproved"
+                            class="sapUiTinyMarginTop sapUiSmallMarginBegin"
+                        />
+                    </HBox>
+                </VBox>
+            </Panel>
+        </f:GridListItem>
+    </f:GridList>
+</core:FragmentDefinition>

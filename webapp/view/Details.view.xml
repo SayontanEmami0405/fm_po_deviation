@@ -1,0 +1,218 @@
+<mvc:View
+    controllerName="fmpodeviation.controller.Details"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+>
+    <Page
+        id="page1"
+        showNavButton="false"
+        class="sapUiResponsiveContentPadding"
+    >
+        <customHeader>
+            <Toolbar class="bgTitle">
+                <Button
+                    icon="https://img.icons8.com/color/48/back--v1.png"
+                    type="Transparent"
+                    press="onNavBack"
+                    class="whiteText"
+                />
+                <Image
+                    src="https://play-lh.googleusercontent.com/vUhttkqY8FHqm6I-r0T210GBeH-9co97zc0D5dtUBqMWPhbdZdw9Kh3FDFOKFpQKLoPPgpviRZzWRBtD-Txgnw=w600-h300-pc0xffffff-pd"
+                    height="2.5rem"
+                    width="auto"
+                    class="appLogo sapUiSmallMarginBegin"
+                />
+                <ToolbarSpacer />
+                <Text
+                    text="Order Details"
+                    class="whiteText"
+                />
+                <ToolbarSpacer />
+                <Button
+                    icon="https://img.icons8.com/color/48/share--v1.png"
+                    type="Transparent"
+                    class="whiteText"
+                />
+            </Toolbar>
+        </customHeader>
+
+        <content>
+            <ObjectHeader
+    title="PO Number: {jsonHeaderModel>/Ebeln}"
+    backgroundDesign="Translucent"
+    class="sapUiResponsivePadding--header"
+>
+    <statuses>
+        <ObjectStatus
+            text="{jsonHeaderModel>/statusText}"
+            state="{jsonHeaderModel>/statusState}"
+            inverted="true"
+        />
+    </statuses>
+    <attributes>
+
+        <ObjectAttribute text="Created by: {jsonHeaderModel>/Zname}" />
+        <ObjectAttribute text="Date: {path: 'jsonHeaderModel>/Erdat', formatter: '.formatter.formatDate'}" />
+    </attributes>
+</ObjectHeader>
+
+            <layout:VerticalLayout
+                width="100%"
+                class="sapUiContentPadding"
+            >
+                <HBox
+                    alignItems="Center"
+                    class="sapUiSmallMarginBottom"
+                >
+                    <Title
+                        text="Line Items"
+                        level="H4"
+                        titleStyle="H4"
+                    />
+                    <Button
+                        id="idExpandAllBtn"
+                        icon="https://img.icons8.com/color/48/expand-arrow.png"
+                        type="Transparent"
+                        press="onToggleExpandAll"
+                        tooltip="Expand/Collapse All"
+                        class="sapUiTinyMarginBegin"
+                    />
+                </HBox>
+                <List
+                    id="idItemList"
+                    items="{jsonItemListModel>/}"
+                    class="sapUiNoContentPadding"
+                >
+                    <CustomListItem>
+                        <Panel
+                            expandable="true"
+                            backgroundDesign="Transparent"
+                            class="sapUiNoContentPadding"
+                        >
+                            <headerToolbar>
+                                <OverflowToolbar
+                                    height="auto"
+                                    style="Clear"
+                                    class="sapUiTinyMarginTop sapUiTinyMarginBottom"
+                                >
+                                    <Image
+                                        src="https://img.icons8.com/color/48/expand-arrow.png"
+                                        width="1.2rem"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                                    <Text
+                                        text="{parts: [{path: 'jsonItemListModel>Ebelp'}, {path: 'jsonItemListModel>Stxt'}, {path: 'jsonItemListModel>Netwr'}, {path: 'jsonItemListModel>Waers'}, {path: 'jsonItemListModel>Loekz'}], formatter: '.formatter.headerText'}"
+                                        wrapping="true"
+                                        class="sapUiTinyMarginBegin sapUiTinyMarginEnd"
+                                    />
+                                    <ToolbarSpacer />
+                                    <ObjectStatus
+                                        text="DELETED"
+                                        state="Error"
+                                        inverted="true"
+                                        visible="{= ${jsonItemListModel>Loekz} === true || ${jsonItemListModel>Loekz} === 'L' }"
+                                        class="sapUiSmallMarginEnd"
+                                    />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <f:SimpleForm
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="3"
+                                labelSpanM="3"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <f:content>
+                                    <Label
+                                        text="Delivery date"
+                                        textAlign="Begin"
+                                    />
+                                    <Text
+                                        text="{path: 'jsonItemListModel>DelDate', formatter: '.formatter.formatDate'}"
+                                    />
+
+                                    <Label
+                                        text="Cost Center"
+                                        textAlign="Begin"
+                                    />
+                                    <Text text="{jsonItemListModel>Ccenter}" />
+
+                                    <Label
+                                        text="GL Account"
+                                        textAlign="Begin"
+                                    />
+                                    <Text text="{jsonItemListModel>Gl}" />
+
+                                    <Label
+                                        text="Quantity"
+                                        textAlign="Begin"
+                                    />
+                                    <Text
+                                        text="{jsonItemListModel>Menge} {jsonItemListModel>Meins}"
+                                    />
+
+                                    <Label
+                                        text="Order"
+                                        textAlign="Begin"
+                                    />
+                                    <Text text="{jsonItemListModel>Order}" />
+
+                                    <Label
+                                        text="Amount"
+                                        textAlign="Begin"
+                                    />
+                                    <Text
+                                        text="{
+                                            parts: [
+                                                {path: 'jsonItemListModel>Netwr'},
+                                                {path: 'jsonItemListModel>Waers'}
+                                            ],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {
+                                                showMeasure: true,
+                                                currencyCode: true
+                                            }
+                                        }"
+                                    />
+                                </f:content>
+                            </f:SimpleForm>
+                        </Panel>
+                    </CustomListItem>
+                </List>
+            </layout:VerticalLayout>
+        </content>
+
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="Approve"
+                    type="Accept"
+                    icon="https://img.icons8.com/color/48/ok--v1.png"
+                    press="onPressAccept"
+                    visible="{jsonUiModel>/buttonsEnabled}"
+                />
+                <Button
+                    text="Reject"
+                    type="Reject"
+                    icon="https://img.icons8.com/color/48/cancel--v1.png"
+                    press="onPressReject"
+                    visible="{jsonUiModel>/buttonsEnabled}"
+                />
+                <!-- <Button
+                    icon="sap-icon://print"
+                    text="Print PO"
+                    type="Emphasized"
+                    press="onPressPrintPlaceholder"
+                /> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

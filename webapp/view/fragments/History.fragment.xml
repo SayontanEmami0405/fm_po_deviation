@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+>
+    <IconTabBar
+        stretchContentHeight="false"
+        backgroundDesign="Solid"
+        class="sapUiResponsiveContentPadding"
+        select="onPressItemIconTabBar"
+        id="idTabInner"
+    >
+        <items>
+            <IconTabFilter
+                text="Approved"
+                key="Approved"
+            >
+                <core:Fragment
+                    fragmentName="fmpodeviation.view.fragments.Approved"
+                    type="XML"
+                />
+            </IconTabFilter>
+            <IconTabFilter
+                text="Rejected"
+                key="Rejected"
+            >
+                <core:Fragment
+                    fragmentName="fmpodeviation.view.fragments.Rejected"
+                    type="XML"
+                />
+            </IconTabFilter>
+        </items>
+    </IconTabBar>
+</core:FragmentDefinition>

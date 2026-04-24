@@ -1,0 +1,126 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+>
+    <f:GridList items="{jsonMyApprovalsModel>/}">
+        <f:GridListItem
+            press="onPressLineItemMyApprovals"
+            type="Active"
+        >
+            <Panel class="modernCard">
+                <VBox class="sapUiSmallMargin">
+                    <layoutData> 
+                        <FlexItemData
+                            growFactor="1"
+                            shrinkFactor="0"
+                        />
+                    </layoutData>
+
+                    <HBox justifyContent="End">
+                        <core:Icon
+                            src="sap-icon://navigation-right-arrow"
+                            size="1rem"
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop">
+                        <!-- <Text
+                            text="Date : { path : 'jsonMyApprovalsModel>Erdat' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}} - Time : {path: 'jsonMyApprovalsModel>Uzeit' , type: 'sap.ui.model.odata.type.Time', formatOptions: {pattern: 'HH:mm:ss'}} "
+                        /> -->
+                        <Text
+                            text="Date : { path : 'jsonMyApprovalsModel>Erdat' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}} "
+                        />
+                    </HBox>
+
+                    <HBox class="sapUiTinyMarginTop">
+                        <Label
+                            class="poAmountSmall"
+                            text="{
+                                parts: [
+                                        { path:'jsonMyApprovalsModel>Netwr' },
+                                        { path : 'jsonMyApprovalsModel>Waers'}
+                                       ],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: { showMeasure: true, currencyCode: true }}"
+                        />
+                    </HBox>
+                    <HBox class="sapUiTinyMarginTop">
+                        <Label
+                            wrapping="true"
+                            wrappingType="Normal"
+                            class="poSubtitleSmall"
+                            text="{jsonMyApprovalsModel>Ebeln} / {jsonMyApprovalsModel>Lifnr} / {jsonMyApprovalsModel>Name1}"
+                        />
+                    </HBox>
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Text
+                            wrapping="true"
+                            wrappingType="Normal"
+                            text="{jsonMyApprovalsModel>Matnr} / {jsonMyApprovalsModel>Arktx}"
+                        /> 
+                    </HBox> -->
+                    <!-- <HBox
+                        class="sapUiTinyMarginTop"
+                        width="100%"
+                    >
+                        <TextArea
+                            width="15rem"
+                            growing="true"
+                            height="4rem"
+                            visible="{= ${jsonMyApprovalsModel>StatusWf} === 'S00' ? true : false }"
+                            editable="{= ${jsonMyApprovalsModel>StatusWf} === 'S00' ? true : false }"
+                            value="{jsonMyApprovalsModel>InitRem}"
+                        />
+                    </HBox> -->
+                    <!-- <HBox class="sapUiTinyMarginTop">
+                        <Link
+                            text="Initiator Comment"
+                            visible="{= ${jsonMyApprovalsModel>StatusWf} === 'S00' ? false : true }"
+                            press="onHandleLinkPressInitiatorMyApprovals"
+                        />
+                    </HBox> -->
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        class="sapUiTinyMarginTop"
+                        wrap="NoWrap"
+                    >
+                    <!--    <Button
+                            text="Details"
+                            type="Emphasized"
+                            press="onPressLineItemMyApprovals"
+                        /> -->
+                        <Button
+                            text="Approve"
+                            type="Accept"
+                            press="onPressAccept"
+                        />
+                        <Button
+                            text="Reject"
+                            type="Reject"
+                            press="onPressReject"
+                        />
+                        <Button
+                            text="History"
+                            type="Ghost"
+                            press="onPressLog"
+                        />
+                        <Button
+                            text="Print"
+                            icon="https://img.icons8.com/color/48/print.png"
+                            type="Ghost"
+                            press="onPressPrintPlaceholder"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <Link 
+                            text="View Details" 
+                            press="onPressLineItemMyApprovals"
+                            class="sapUiTinyMarginTop"
+                        />
+                    </HBox>
+                </VBox>
+            </Panel>
+        </f:GridListItem>
+    </f:GridList>
+</core:FragmentDefinition>

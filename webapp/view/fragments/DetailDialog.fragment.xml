@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        id="idDetailDialog"
+        title="Detail"
+        contentWidth="30%"
+    >
+        <f:Form id="idSimpleFormDetailDialog">
+            <f:layout>
+                <f:ColumnLayout
+                    columnsM="1"
+                    columnsL="1"
+                    columnsXL="1"
+                />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="">
+                            <f:fields>
+                                  <Text
+                                    width="100%"
+                                    text="{jsonDetailsModel>/Details}"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        <buttons>
+            <Button
+                text="Cancel"
+                press="onCloseDetailDialog"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
