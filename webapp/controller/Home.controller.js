@@ -328,6 +328,8 @@ sap.ui.define([
             var sPO = oItem.Ebeln;
             var ODataModel = this.getView().getModel();
 
+            this._handleAction(oEvent, "U", "jsonMyApprovalsModel");
+
             var aFilters = [
                 new Filter("Ebeln", FilterOperator.EQ, sPO),
                 new Filter("Status", FilterOperator.EQ, "U")
